@@ -1,0 +1,93 @@
+/* src/index.css */
+
+
+@font-face {
+  font-family: "The Crow";
+  src: url("/assets/TheCrow.ttf") format("truetype");
+  font-display: swap;
+}
+
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #0a0a12; /* Deeper cosmic black */
+  color: #f0f0f0; /* Crisper white for readability */
+  font-family: "Poppins", sans-serif;
+  line-height: 1.6;
+  scroll-behavior: smooth;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: #f0f0f0;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+a {
+  color: #00f7ff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+a:hover {
+  color: #9b5cff;
+}
+
+/* 🔲 Inputs and Form Elements */
+input,
+select,
+textarea {
+  background-color: #232337;
+  color: #f0f0f0;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 16px;
+  outline: none;
+  transition: box-shadow 0.3s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  box-shadow: 0 0 8px #00f7ff;
+}
+
+/* 🔘 Buttons */
+button {
+  background: linear-gradient(45deg, #ff2a4e, #9b5cff);
+  color: #f0f0f0;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #00f7ff, 0 0 25px #9b5cff inset;
+}
+
+/* ✨ Fancy Notifications (used throughout dashboard) */
+.notification {
+  background-color: #171723;
+  border-left: 4px solid #ff2a4e;
+  padding: 12px 18px;
+  border-radius: 6px;
+  color: #f0f0f0;
+  margin-bottom: 10px;
+  box-shadow: 0 0 12px rgba(0, 247, 255, 0.2);
+}
+
+/* 🌌 General container structure */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}

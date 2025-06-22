@@ -1,0 +1,105 @@
+/* src/styles/Welcome.css */
+
+.welcome-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  padding: 20px;
+  background-color: #0a0a12; /* Fallback background if image fails */
+}
+
+.welcome-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 10, 18, 0.75);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.welcome-header {
+  margin-bottom: 40px;
+}
+
+.welcome-title {
+  font-family: "The Crow", serif;
+  font-size: 64px;
+  color: #ff2a4e; /* Holo-red */
+  text-shadow: 0 0 15px #ff2a4e;
+  margin-bottom: 10px;
+}
+
+.welcome-tagline {
+  font-size: 24px;
+  color: #8c8ca1;
+}
+
+.welcome-buttons {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn {
+  border: none;
+  border-radius: 6px;
+  padding: 12px 24px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.primary-btn {
+  background: linear-gradient(45deg, #ff2a4e, #9b5cff);
+  color: #f0f0f0;
+  box-shadow: 0 0 8px #ff2a4e;
+}
+
+.primary-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #00f7ff, 0 0 25px #9b5cff inset;
+}
+
+.secondary-btn {
+  background: transparent;
+  color: #00f7ff;
+  border: 2px solid #00f7ff;
+}
+
+.secondary-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #00f7ff;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 480px) {
+  .welcome-title {
+    font-size: 48px;
+  }
+  .welcome-tagline {
+    font-size: 20px;
+  }
+  .btn {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+}

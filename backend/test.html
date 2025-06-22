@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>API Tester</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    section { margin-bottom: 40px; border: 1px solid #ccc; padding: 15px; }
+    input, button, textarea { padding: 8px; margin: 5px; }
+    h2 { color: #333; }
+    pre { background: #eee; padding: 10px; }
+  </style>
+</head>
+<body>
+  <h1>Movie Reservation API Tester</h1>
+
+  <!-- 1. Test GET Endpoints -->
+  <section>
+    <h2>GET Endpoints</h2>
+    <div>
+      <button onclick="getMovies()">Get All Movies</button>
+      <pre id="moviesResult"></pre>
+    </div>
+    <div>
+      <button onclick="getHighRatingShowtimes()">Showtimes for Movies with Rating > 7</button>
+      <pre id="highRatingResult"></pre>
+    </div>
+    <div>
+      <button onclick="getAvailableSeats()">Total Available Seats per Showtime</button>
+      <pre id="availableSeatsResult"></pre>
+    </div>
+    <div>
+      <button onclick="getPlatBookedShowtimes()">Showtimes with >5 Plat Seats Booked</button>
+      <pre id="platBookedResult"></pre>
+    </div>
+    <div>
+      <button onclick="getReservationsFullDetails()">All Reservations with Customer Details</button>
+      <pre id="reservationDetailsResult"></pre>
+    </div>
+    <div>
+      <button onclick="getActionMovies()">Action Movies</button>
+      <pre id="actionMoviesResult"></pre>
+    </div>
+    <div>
+      <button onclick="getTop3Movies()">Top 3 Movies by Rating</button>
+      <pre id="top3MoviesResult"></pre>
+    </div>
+    <div>
+      <button onclick="getAllUsers()">All Users (Admins & Customers)</button>
+      <pre id="allUsersResult"></pre>
+    </div>
+    <div>
+      <button onclick="getAllGenres()">All Genres with Synonyms</button>
+      <pre id="allGenresResult"></pre>
+    </div>
+  </section>
+
+  <!-- 2. Test POST Endpoints -->
+  <section>
+    <h2>POST Endpoints</h2>
+    <!-- Signup -->
+    <h3>Signup</h3>
+    <form id="signupForm">
+      <input type="text" name="fullName" placeholder="Full Name" required><br>
+      <input type="email" name="email" placeholder="Email" required><br>
+      <input type="password" name="password" placeholder="Password" required><br>
+      <input type="text" name="phoneNum" placeholder="Phone Number" required><br>
+      <input type="text" name="gender" placeholder="Gender" required><br>
+      <select name="userType" required>
+        <option value="Admin">Admin</option>
+        <option value="Customer">Customer</option>
+      </select><br>
+      <button type="submit">Signup</button>
+    </form>
+    <pre id="signupResult"></pre>
+
+    <!-- Login -->
+    <h3>Login</h3>
+    <form id="loginForm">
+      <input type="email" name="email" placeholder="Email" required><br>
+      <input type="password" name="password" placeholder="Password" required><br>
+      <button type="submit">Login</button>
+    </form>
+    <pre id="loginResult"></pre>
+
+    <!-- Insert Movie from OMDb -->
+    <h3>Insert Movie from OMDb</h3>
+    <form id="insertMovieForm">
+      <input type="text" name="title" placeholder="Movie Title" required>
+      <button type="submit">Insert Movie</button>
+    </form>
+    <pre id="insertMovieResult"></pre>
+
+    <!-- Create Showtime -->
+    <h3>Create Showtime</h3>
+    <form id="createShowtimeForm">
+      <input type="text" name="startingTime" placeholder="Starting Time (YYYY-MM-DD HH:MM:SS)" required><br>
+      <input type="text" name="endingTime" placeholder="Ending Time (YYYY-MM-DD HH:MM:SS)" required><br>
+      <input type="number" name="movieId" placeholder="Movie ID" required><br>
+      <button type="submit">Create Showtime</button>
+    </form>
+    <pre id="createShowtimeResult"></pre>
+
+    <!-- Book Seats -->
+    <h3>Book Multiple Seats</h3>
+    <form id="bookSeatsForm">
+      <input type="number" name="showTimeId" placeholder="ShowTime ID" required><br>
+      <input type="number" name="customerID" placeholder="Customer ID" required><br>
+      <input type="number" name="PlatCount" placeholder="Plat Count" value="0"><br>
+      <input type="number" name="GoldCount" placeholder="Gold Count" value="0"><br>
+      <input type="number" name="RegularCount" placeholder="Regular Count" value="0"><br>
+      <button type="submit">Book Seats</button>
+    </form>
+    <pre id="bookSeatsResult"></pre>
+
+    <!-- Checkout -->
+    <h3>Checkout</h3>
+    <form id="checkoutForm">
+      <input type="number" name="resID" placeholder="Reservation ID" required><br>
+      <input type="text" name="bankAcc" placeholder="Bank Account" required><br>
+      <button type="submit">Checkout</button>
+    </form>
+    <pre id="checkoutResult"></pre>
+
+    <!-- Add Feedback -->
+    <h3>Add Feedback</h3>
+    <form id="feedbackForm">
+      <input type="number" name="customerID" placeholder="Customer ID" required><br>
+      <textarea name="review" placeholder="Your feedback" required></textarea><br>
+      <input type="number" step="0.1" name="rating" placeholder="Rating (0-9.9)" required><br>
+      <button type="submit">Submit Feedback</button>
+    </form>
+    <pre id="feedbackResult"></pre>
+  </section>
+
+  <script>
+    const API_BASE = "http://localhost:3000";
+
+    // GET endpoints
+    function getMovies() {
+      fetch(API_BASE + "/api/movies")
+        .then(res => res.json())
+        .then(data => document.getElementById("moviesResult").textContent = JSON.stringify(data, null, 2))
+        .catch(err => console.error(err));
+    }
+
+    function getHighRatingShowtimes() {
+      fetch(API_BASE + "/api/showtimes/high-rating")
+        .then(res => res.json())
+        .then(data => document.getElementById("highRatingResult").textContent = JSON.stringify(data, null, 2))
+        .catch(err => console.error(err));
+    }
+
+    function getAvailableSeats() {
+      fetch(API_BASE + "/api/showtimes/available-seats")
+        .then(res => res.json())
+        .then(data => document.getElementById("availableSeatsResult").textContent = JSON.stringify(data, null, 2))
+        .catch(err => console.error(err));
+    }
+
+    function getPlatBookedShowtimes() {
+      fetch(API_BASE + "/api/showtimes/plat-booked")
+        .then(res => res.json())
+        .then(data => document.getElementById("platBookedResult").textContent = JSON.stringify(data, null, 2))
+        .catch(err => console.error(err));
+    }
+
+    function getReservationsFullDetails() {
+      fetch(API_BASE + "/api/reservations/full-details")
+        .then(res => res.json())
+        .then(data => document.getElementById("reservationDetailsResult").textContent = JSON.stringify(data, null, 2))
+        .catch(err => console.error(err));
+    }
+
+    function getActionMovies() {
+      fetch(API_BASE + "/api/movies/action")
+        .then(res => res.json())
+        .then(data => document.getElementById("actionMoviesResult").textContent = JSON.stringify(data, null, 2))
+        .catch(err => console.error(err));
+    }
+
+    function getTop3Movies() {
+      fetch(API_BASE + "/api/movies/top3")
+        .then(res => res.json())
+        .then(data => document.getElementById("top3MoviesResult").textContent = JSON.stringify(data, null, 2))
+        .catch(err => console.error(err));
+    }
+
+    function getAllUsers() {
+      fetch(API_BASE + "/api/users/all")
+        .then(res => res.json())
+        .then(data => document.getElementById("allUsersResult").textContent = JSON.stringify(data, null, 2))
+        .catch(err => console.error(err));
+    }
+
+    function getAllGenres() {
+      fetch(API_BASE + "/api/genres")
+        .then(res => res.json())
+        .then(data => document.getElementById("allGenresResult").textContent = JSON.stringify(data, null, 2))
+        .catch(err => console.error(err));
+    }
+
+    // POST endpoints
+    document.getElementById("signupForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData.entries());
+      fetch(API_BASE + "/api/users/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      })
+      .then(res => res.json())
+      .then(resp => document.getElementById("signupResult").textContent = JSON.stringify(resp, null, 2))
+      .catch(err => console.error(err));
+    });
+
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData.entries());
+      fetch(API_BASE + "/api/users/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      })
+      .then(res => res.json())
+      .then(resp => document.getElementById("loginResult").textContent = JSON.stringify(resp, null, 2))
+      .catch(err => console.error(err));
+    });
+
+    document.getElementById("insertMovieForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const title = this.title.value;
+      fetch(API_BASE + "/api/movies/fromapi/" + encodeURIComponent(title))
+        .then(res => res.json())
+        .then(resp => document.getElementById("insertMovieResult").textContent = JSON.stringify(resp, null, 2))
+        .catch(err => console.error(err));
+    });
+
+    document.getElementById("createShowtimeForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData.entries());
+      fetch(API_BASE + "/api/showtimes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      })
+      .then(res => res.json())
+      .then(resp => document.getElementById("createShowtimeResult").textContent = JSON.stringify(resp, null, 2))
+      .catch(err => console.error(err));
+    });
+
+    document.getElementById("bookSeatsForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData.entries());
+      // Convert seat counts to numbers
+      data.PlatCount = parseInt(data.PlatCount) || 0;
+      data.GoldCount = parseInt(data.GoldCount) || 0;
+      data.RegularCount = parseInt(data.RegularCount) || 0;
+      fetch(API_BASE + "/api/reservations/bookSeats", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      })
+      .then(res => res.json())
+      .then(resp => document.getElementById("bookSeatsResult").textContent = JSON.stringify(resp, null, 2))
+      .catch(err => console.error(err));
+    });
+
+    document.getElementById("checkoutForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData.entries());
+      fetch(API_BASE + "/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      })
+      .then(res => res.json())
+      .then(resp => document.getElementById("checkoutResult").textContent = JSON.stringify(resp, null, 2))
+      .catch(err => console.error(err));
+    });
+
+    document.getElementById("feedbackForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData.entries());
+      data.rating = parseFloat(data.rating) || 0;
+      fetch(API_BASE + "/api/feedback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      })
+      .then(res => res.json())
+      .then(resp => document.getElementById("feedbackResult").textContent = JSON.stringify(resp, null, 2))
+      .catch(err => console.error(err));
+    });
+  </script>
+</body>
+</html>

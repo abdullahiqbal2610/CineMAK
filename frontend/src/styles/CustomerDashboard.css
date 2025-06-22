@@ -1,0 +1,356 @@
+/* 🌌 Cosmic Synthwave Theme */
+.customer-dashboard {
+    background-color: #0A0A12;
+    color: #F0F0F0;
+    font-family: "Poppins", sans-serif;
+    min-height: 100vh;
+    padding: 20px;
+  }
+  
+  /* 🎬 Header Section */
+  .dashboard-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .dashboard-title {
+    font-family: "The Crow", serif;
+    font-size: 48px;
+    color: #FF2A4E;
+    margin-bottom: 5px;
+    text-shadow: 0 0 10px #FF2A4E;
+  }
+  .dashboard-header p {
+    font-size: 18px;
+    color: #8C8CA1;
+  }
+  
+  /* 📨 Notification */
+  .notification {
+    background-color: #171723;
+    border-left: 4px solid #FF2A4E;
+    padding: 12px 18px;
+    border-radius: 6px;
+    color: #F0F0F0;
+    text-align: center;
+    margin-bottom: 15px;
+    box-shadow: 0 0 12px rgba(0, 247, 255, 0.2);
+    animation: fadeInUp 0.6s ease;
+  }
+  
+  /* 🔁 Tab Navigation */
+  .tab-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+    gap: 10px;
+  }
+  .tab-button {
+    background: #171723;
+    border: none;
+    border-radius: 6px;
+    color: #F0F0F0;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .tab-button.active,
+  .tab-button:hover {
+    background: linear-gradient(45deg, #FF2A4E, #9B5CFF);
+    box-shadow: 0 0 10px #00F7FF;
+    transform: scale(1.05);
+  }
+  
+  /* 📦 Content Section */
+  .tab-content {
+    animation: fadeInUp 0.6s ease-out;
+  }
+  
+  .panel {
+    background: #171723;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 247, 255, 0.08);
+    margin-bottom: 25px;
+  }
+  .panel h2 {
+    font-family: "The Crow", serif;
+    font-size: 32px;
+    color: #FF2A4E;
+    margin-top: 0;
+    border-bottom: 1px solid #2A2A3C;
+    padding-bottom: 5px;
+  }
+  
+  /* 📋 Lists */
+  .list {
+    list-style: none;
+    padding: 0;
+  }
+  .list li {
+    margin-bottom: 5px;
+  }
+  
+  /* 🎥 Movie Grid */
+  .movies-grid,
+  .movies-carousel {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+  }
+  
+  .movie-card {
+    background: #232337;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+  }
+  .movie-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(0, 247, 255, 0.6);
+  }
+  .movie-card img.movie-poster {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-bottom: 1px solid #171723;
+  }
+  .movie-info {
+    padding: 10px 5px;
+  }
+  .movie-info h4 {
+    margin: 0;
+    font-family: "The Crow", serif;
+    font-size: 20px;
+    color: #FF2A4E;
+  }
+  .movie-info p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #F0F0F0;
+  }
+  
+  /* 🕒 Showtime Grid */
+  .showtimes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+  }
+  .showtime-card {
+    background: #232337;
+    border-radius: 6px;
+    padding: 10px;
+    transition: all 0.3s ease;
+    text-align: center;
+  }
+  .showtime-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(0, 247, 255, 0.8);
+  }
+  .showtime-info {
+    padding: 10px;
+  }
+  .showtime-info h4 {
+    font-family: "The Crow", serif;
+    font-size: 18px;
+    color: #FF2A4E;
+  }
+  .showtime-info p {
+    font-size: 14px;
+    color: #F0F0F0;
+  }
+  
+  /* 💳 Cards for Reservation / Seat Data */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+  }
+  .card {
+    background: #232337;
+    border-radius: 6px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(155, 92, 255, 0.4);
+  }
+  .card h4 {
+    font-family: "The Crow", serif;
+    font-size: 18px;
+    color: #FF2A4E;
+    margin-bottom: 8px;
+  }
+  
+  /* 🧾 Fancy Inputs / Textareas */
+  .fancy-input,
+  .form-group-inline input,
+  .form-group-inline textarea {
+    background: #232337;
+    color: #F0F0F0;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    transition: 0.3s ease;
+  }
+  .fancy-input:focus,
+  .form-group-inline input:focus,
+  .form-group-inline textarea:focus,
+  .fancy-textarea:focus {
+    box-shadow: 0 0 6px #00F7FF;
+    border: none;
+  }
+  .fancy-textarea {
+    resize: vertical;
+  }
+  
+/* Price Information Panel for Book Seats */
+.price-info {
+  background-color: #232337;
+  border: 1px solid #FF2A4E;
+  padding: 10px 15px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  text-align: left;
+  color: #F0F0F0;
+}
+
+.price-info p {
+  margin: 4px 0;
+  font-size: 16px;
+}
+
+
+  /* 🧾 Form Layout */
+  .form-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .form-group-inline {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  /* 🎟️ Seats Layout */
+  .seat-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin-top: 15px;
+  }
+  .seat {
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  .seat-available {
+    background-color: #00F7FF;
+    color: #0A0A12;
+  }
+  .seat-full {
+    background-color: #FF2A4E;
+    color: #F0F0F0;
+  }
+  
+  /* ⭐ Five Star Rating */
+  .five-star-rating {
+    display: flex;
+    gap: 5px;
+  }
+  .five-star-rating .star {
+    font-size: 24px;
+    cursor: pointer;
+    color: #444;
+    transition: color 0.2s;
+  }
+  .five-star-rating .star.filled {
+    color: #FFD700;
+  }
+  
+  /* 🎬 Modal Styles */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 10, 18, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  .modal-content {
+    background: #171723;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    width: 90%;
+    animation: fadeInUp 0.4s ease-out;
+  }
+  .modal-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    font-size: 32px;
+    color: #FF2A4E;
+    cursor: pointer;
+  }
+  .modal-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .modal-poster {
+    width: 200px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+  }
+  .modal-info {
+    text-align: center;
+  }
+  .modal-info h2 {
+    font-family: "The Crow", serif;
+    color: #FF2A4E;
+    margin-bottom: 10px;
+  }
+  .modal-info p {
+    color: #F0F0F0;
+  }
+  
+  /* 💫 Animations */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* 📱 Responsive Tweaks */
+  @media (max-width: 768px) {
+    .dashboard-title {
+      font-size: 36px;
+    }
+    .tab-nav {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .tab-button {
+      width: 100%;
+    }
+  }
+  
