@@ -42,7 +42,7 @@ CineMAK is an end-to-end movie reservation system built as a semester project fo
    ```bash
    git clone https://github.com/YourUsername/CineMAK.git
    cd CineMAK
-````
+
 
 2. **Install dependencies**
 
